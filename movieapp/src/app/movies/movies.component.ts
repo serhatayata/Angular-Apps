@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Movie } from '../models/movie';
+import { MovieRepository } from '../models/movie.repository';
+import { MovieComponent } from './movie/movie.component';
 
 @Component({
   selector: 'app-movies',
@@ -7,17 +10,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MoviesComponent implements OnInit {
 
-  constructor() { }
+  constructor() { 
+    this.movieRepository=new MovieRepository();
+    this.movies=this.movieRepository.getMovies();
+  }
+
+  movies:Movie[];
+  movieRepository:MovieRepository;
 
   ngOnInit(): void {
   }
 
   // movies = ["Captain America", "Fast And Furious", "Lord Of The Rings","Mission Impossible"];
-  movies = [
-    {id:1,title:"Captain America",description:"Description of movie Captain America", imageUrl:"CaptainAmerica.jpg"},
-    {id:2,title:"Fast And Furious",description:"Description of movie Fast And Furious", imageUrl:"FastAndFurious.jpg"},
-    {id:3,title:"Lord Of The Rings",description:"Description of movie Lord Of The Rings", imageUrl:"Lotr.jpg"},
-    {id:4,title:"Mission Impossible",description:"Description of movie Mission Impossible", imageUrl:"MissionImpossible.jpg"}
-  ]
+
+
 
 }
