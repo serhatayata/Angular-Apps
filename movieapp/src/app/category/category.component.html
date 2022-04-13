@@ -1,6 +1,3 @@
 <div class="list-group mb-2">
-    <a href="" class="list-group-item list-group-item-action active">Adventure</a>
-    <a href="" class="list-group-item list-group-item-action">Romance</a>
-    <a href="" class="list-group-item list-group-item-action">Drama</a>
-    <a href="" class="list-group-item list-group-item-action">Science Fiction</a>
+    <a *ngFor="let item of categories" href="#" class="list-group-item list-group-item-action">{{item}}</a>
 </div>

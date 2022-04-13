@@ -12,4 +12,12 @@ export class MoviesComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  // movies = ["Captain America", "Fast And Furious", "Lord Of The Rings","Mission Impossible"];
+  movies = [
+    {id:1,title:"Captain America",description:"Description of movie Captain America", imageUrl:"CaptainAmerica.jpg"},
+    {id:2,title:"Fast And Furious",description:"Description of movie Fast And Furious", imageUrl:"FastAndFurious.jpg"},
+    {id:3,title:"Lord Of The Rings",description:"Description of movie Lord Of The Rings", imageUrl:"Lotr.jpg"},
+    {id:4,title:"Mission Impossible",description:"Description of movie Mission Impossible", imageUrl:"MissionImpossible.jpg"}
+  ]
+
 }
