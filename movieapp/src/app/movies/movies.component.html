@@ -1,17 +1,75 @@
-<div class="card mb-3" *ngFor="let item of movies">
-    <div class="row">
-        <div class="col-md-3">
-            <img src="/assets/img/{{item.imageUrl}}" style="height:100%" class="img-fluid" alt="">
-        </div>
-        <div class="col-md-9">
-            <div class="card-body">
-                <h3 class="card-title">{{item.title}}</h3>
-                <p class="card-text">{{item.description}}</p>
-                <button class="btn btn-sm btn-outline-primary">Details</button>
+<div *ngIf="movies.length > 0; else no_movies" class="mt-2 mb-2">
+    <h1 class="">{{title}}</h1>
+    
+    <div class="mb-2 mt-2 alert alert-warning" *ngIf="movies.length>0">
+        {{movies.length}} movie found
+    </div>
+
+    <ng-template [ngTemplateOutlet]="movieList1"></ng-template>
+    <ng-template [ngTemplateOutlet]="movieList2"></ng-template>
+    <ng-template [ngTemplateOutlet]="movieList3" [ngTemplateOutletContext]="{movies:movieRepository.getMovies()}"></ng-template>
+    
+</div>
+
+<ng-template #movieList1>
+    <div class="card mb-3" *ngFor="let item of movies">
+        <div class="row">
+            <div class="col-md-4">
+                <img src="/assets/img/{{item.imageUrl}}" style="height:100%" class="img-fluid" alt="">
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h3 class="card-title">{{item.title}}</h3>
+                    <p class="card-text">{{item.description}}</p>
+                    <button class="btn btn-sm btn-outline-primary">Details</button>
+                </div>
             </div>
         </div>
     </div>
-</div>
+</ng-template>
+
+<ng-template #movieList2>
+    <div class="card mb-3" *ngFor="let item of movies">
+        <div class="row">
+            <div class="col-md-5">
+                <img src="/assets/img/{{item.imageUrl}}" style="height:100%" class="img-fluid" alt="">
+            </div>
+            <div class="col-md-7">
+                <div class="card-body">
+                    <h3 class="card-title">{{item.title}}</h3>
+                    <p class="card-text">{{item.description}}</p>
+                    <button class="btn btn-sm btn-outline-primary">Details</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-template>
+
+<ng-template #movieList3 let-popularMovies="movies">
+    <h2 class="mt-2 mb-2">Popular Movies</h2>
+    <div class="card mb-3" *ngFor="let item of movies">
+        <div class="row">
+            <div class="col-md-5">
+                <img src="/assets/img/{{item.imageUrl}}" style="height:100%" class="img-fluid" alt="">
+            </div>
+            <div class="col-md-7">
+                <div class="card-body">
+                    <h3 class="card-title">{{item.title}}</h3>
+                    <p class="card-text">{{item.description}}</p>
+                    <button class="btn btn-sm btn-outline-primary">Details</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-template>
+
+    <ng-template #no_movies>
+        <div class="alert alert-warning mb-2 mt-2">
+        Movie not found
+        </div>
+    </ng-template>
+
+
 
 <!-- <app-movie *ngFor="let item of movies"></app-movie> -->
 <!-- 

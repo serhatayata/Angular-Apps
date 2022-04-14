@@ -13,13 +13,16 @@ export class MoviesComponent implements OnInit {
   constructor() { 
     this.movieRepository=new MovieRepository();
     this.movies=this.movieRepository.getMovies();
+    this.title="Movie List";
   }
 
+  title:string;
   movies:Movie[];
   movieRepository:MovieRepository;
 
   ngOnInit(): void {
   }
+  
 
   // movies = ["Captain America", "Fast And Furious", "Lord Of The Rings","Mission Impossible"];
 
