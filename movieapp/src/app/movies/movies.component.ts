@@ -14,10 +14,12 @@ export class MoviesComponent implements OnInit {
     this.movieRepository=new MovieRepository();
     this.movies=this.movieRepository.getMovies();
     this.title="Movie List";
+    this.popularMovies=this.movieRepository.getPopularMovies();
   }
 
   title:string;
   movies:Movie[];
+  popularMovies:Movie[];
   movieRepository:MovieRepository;
 
   ngOnInit(): void {
