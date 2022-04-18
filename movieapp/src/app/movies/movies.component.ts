@@ -13,7 +13,7 @@ export class MoviesComponent implements OnInit {
   constructor() { 
     this.movieRepository=new MovieRepository();
     this.movies=this.movieRepository.getMovies();
-    this.title="Movie List";
+    this.title="Movie List";  
     this.popularMovies=this.movieRepository.getPopularMovies();
   }
 
@@ -21,6 +21,8 @@ export class MoviesComponent implements OnInit {
   movies:Movie[];
   popularMovies:Movie[];
   movieRepository:MovieRepository;
+  
+  filterText:string="";
 
   ngOnInit(): void {
   }
