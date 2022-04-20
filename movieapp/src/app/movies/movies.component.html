@@ -6,7 +6,11 @@
     </div>
 
     <div class="mb-3">
-        <input [(ngModel)]="filterText" type="text" class="form-control" placeholder="Search...">
+        <input [(ngModel)]="filterText" 
+        (ngModelChange)="onInputChange()"
+        type="text" 
+        class="form-control" 
+        placeholder="Search...">
         <small class="text-muted" *ngIf="filterText">Searching : {{ filterText }}</small>
     </div>
     <br>
@@ -19,7 +23,7 @@
 </div>
 
 <ng-template #movieList1>
-    <div class="card mb-3 mt-4" *ngFor="let item of movies | movieFilter:filterText">
+    <div class="card mb-3 mt-4" *ngFor="let item of filteredMovies">
         <div class="row">
             <div class="col-md-4">
                 <img src="/assets/img/{{item.imageUrl}}" style="height:100%" class="img-fluid" alt="">
@@ -28,7 +32,10 @@
                 <div class="card-body">
                     <h3 class="card-title">{{item.title}}</h3>
                     <p class="card-text">{{item.description}}</p>
-                    <button class="btn btn-sm btn-outline-primary">Details</button>
+                    <div>
+                        <button class="btn btn-sm btn-outline-primary">Details</button>
+                        <button (click)="addToList($event,item)" class="btn btn-sm btn-primary ms-1">Add to list</button>
+                    </div>
                 </div>
             </div>
         </div>
