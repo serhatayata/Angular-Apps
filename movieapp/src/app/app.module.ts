@@ -10,6 +10,7 @@ import { MovieDetailsComponent } from './movie-details/movie-details.component';
 import { FooterComponent } from './footer/footer.component';
 import { FormsModule } from '@angular/forms';
 import { MovieFilterPipe } from './pipes/movie-filter.pipe';
+import { AlertifyService } from './services/alertify.service';
 
 @NgModule({
   declarations: [ //component
@@ -26,7 +27,7 @@ import { MovieFilterPipe } from './pipes/movie-filter.pipe';
     BrowserModule,
     FormsModule
   ],
-  providers: [],  //services
+  providers: [AlertifyService],  //services
   bootstrap: [AppComponent]  //starter component
 })
 export class AppModule { }

@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Movie } from '../models/movie';
 import { MovieRepository } from '../models/movie.repository';
+import { AlertifyService } from '../services/alertify.service';
 import { MovieComponent } from './movie/movie.component';
+
 
 @Component({
   selector: 'app-movies',
@@ -10,7 +12,7 @@ import { MovieComponent } from './movie/movie.component';
 })
 export class MoviesComponent implements OnInit {
 
-  constructor() { 
+  constructor(private alertify:AlertifyService) { 
     this.movieRepository=new MovieRepository();
     this.movies=this.movieRepository.getMovies();
     this.title="Movie List";  
@@ -37,11 +39,15 @@ export class MoviesComponent implements OnInit {
       $event.target.innerText = "Remove from list"
       $event.target.classList.remove('btn-primary')
       $event.target.classList.add('btn-danger')
+
+     this.alertify.success(movie.title+' added to list');
     }
     else {
       $event.target.innerText = "Add to list"
       $event.target.classList.remove('btn-danger')
       $event.target.classList.add('btn-primary')
+
+      this.alertify.error(movie.title+' removed from the list');
     }
   }
 
