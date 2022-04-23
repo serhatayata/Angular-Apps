@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Movie } from '../models/movie';
 import { MovieRepository } from '../models/movie.repository';
@@ -12,11 +13,12 @@ import { MovieComponent } from './movie/movie.component';
 })
 export class MoviesComponent implements OnInit {
 
-  constructor(private alertify:AlertifyService) { 
-    this.movieRepository=new MovieRepository();
-    this.movies=this.movieRepository.getMovies();
+  constructor(private alertify:AlertifyService, private http:HttpClient) { 
+    // this.movieRepository=new MovieRepository();
+    // this.movies=this.movieRepository.getMovies();
+    // this.popularMovies=this.movieRepository.getPopularMovies();
+
     this.title="Movie List";  
-    this.popularMovies=this.movieRepository.getPopularMovies();
     this.filteredMovies=this.movies;
   }
 
@@ -24,9 +26,12 @@ export class MoviesComponent implements OnInit {
   movies:Movie[];
   filteredMovies:Movie[];
   popularMovies:Movie[];
-  movieRepository:MovieRepository;
   
   filterText:string="";
+
+  ngOnInit(): void {
+    this.http.get('http://localhost:3000/movies');
+  }
 
   onInputChange(){
     this.filteredMovies = this.filterText? 
@@ -51,8 +56,7 @@ export class MoviesComponent implements OnInit {
     }
   }
 
-  ngOnInit(): void {
-  }
+
   
 
   // movies = ["Captain America", "Fast And Furious", "Lord Of The Rings","Mission Impossible"];
