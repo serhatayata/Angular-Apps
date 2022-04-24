@@ -12,6 +12,7 @@ import { FormsModule } from '@angular/forms';
 import { MovieFilterPipe } from './pipes/movie-filter.pipe';
 import { AlertifyService } from './services/alertify.service';
 import { HttpClientModule } from '@angular/common/http';
+import { MovieService } from './services/movie.service';
 
 @NgModule({
   declarations: [ //component
