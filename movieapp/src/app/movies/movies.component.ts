@@ -30,11 +30,16 @@ export class MoviesComponent implements OnInit {
   popularMovies:Movie[]=[];
   
   filterText:string="";
+  error:any="";
 
   ngOnInit(): void {
     this.movieService.getMovies().subscribe(data => {
       this.movies = data;
       this.filteredMovies = this.movies;
+      this.popularMovies = this.movies.filter(x=>x.isPopular);
+    }, error => {
+      this.error = error;
+      console.log(this.error);
     });
 
   }
