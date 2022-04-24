@@ -23,14 +23,21 @@ export class MoviesComponent implements OnInit {
   }
 
   title:string;
-  movies:Movie[];
-  filteredMovies:Movie[];
-  popularMovies:Movie[];
+  movies:Movie[]=[];
+  filteredMovies:Movie[]=[];
+  popularMovies:Movie[]=[];
   
   filterText:string="";
 
   ngOnInit(): void {
-    this.http.get('http://localhost:3000/movies');
+    this.http.get<Movie[]>('http://localhost:3010/movies').subscribe(data => {
+      this.movies = data;
+      this.filteredMovies = this.movies;
+    });
+
+    this.http.get("https://jsonplaceholder.typicode.com/users").subscribe( data => {
+      console.log(data);
+    })
   }
 
   onInputChange(){
