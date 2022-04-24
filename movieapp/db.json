@@ -6,9 +6,9 @@
         {"id":4,"title":"Mission Impossible","description":"Description of movie Mission Impossible", "imageUrl":"MissionImpossible.jpg","isPopular":0}
     ],
     "categories":[
-        {"id":1, "title":"Adventure" },
-        {"id":2, "title":"Romance" },
-        {"id":3, "title":"Science Fiction" },
-        {"id":4, "title":"Comedy" }
+        {"id":1, "name":"Adventure" },
+        {"id":2, "name":"Romance" },
+        {"id":3, "name":"Science Fiction" },
+        {"id":4, "name":"Comedy" }
        ]
 }
