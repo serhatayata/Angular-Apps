@@ -13,6 +13,7 @@ import { MovieFilterPipe } from './pipes/movie-filter.pipe';
 import { AlertifyService } from './services/alertify.service';
 import { HttpClientModule } from '@angular/common/http';
 import { MovieService } from './services/movie.service';
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [ //component
@@ -28,7 +29,8 @@ import { MovieService } from './services/movie.service';
   imports: [ //module
     BrowserModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    AppRoutingModule
   ],
   providers: [AlertifyService],  //services
   bootstrap: [AppComponent]  //starter component
