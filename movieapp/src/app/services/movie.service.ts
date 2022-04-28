@@ -1,6 +1,7 @@
 import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable, throwError } from "rxjs";
+import { map } from "rxjs-compat/operator/map";
 import { catchError,tap } from "rxjs/operators";
 import { Movie } from "../models/movie";
 
@@ -13,13 +14,31 @@ constructor(private http:HttpClient){
 
 url = "http://localhost:3010/movies";
 
-getMovies():Observable<Movie[]> {
+getMovies(categoryId:number):Observable<Movie[]> {
+
+    let newUrl = this.url;
+
+    if(categoryId)
+    {
+        newUrl+="?categoryId="+categoryId;
+    }
+
+    return this.http.get<Movie[]>(newUrl)
+    .pipe(
+        tap(data => console.log(data)),
+        catchError(this.handleError)
+    );
+}
+
+getAllMovies():Observable<Movie[]> {
+
     return this.http.get<Movie[]>(this.url)
     .pipe(
         tap(data => console.log(data)),
         catchError(this.handleError)
     );
 }
+
 
 private handleError(error:HttpErrorResponse){
     if(error.error instanceof ErrorEvent){

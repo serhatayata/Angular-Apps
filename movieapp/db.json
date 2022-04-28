@@ -1,9 +1,9 @@
 {
     "movies":[
-        {"id":1,"title":"Captain America","description":"Description of movie Captain America", "imageUrl":"CaptainAmerica.jpg","isPopular":1},
-        {"id":2,"title":"Fast And Furious","description":"Description of movie Fast And Furious", "imageUrl":"FastAndFurious.jpg","isPopular":0},
-        {"id":3,"title":"Lord Of The Rings","description":"Description of movie Lord Of The Rings", "imageUrl":"Lotr.jpg","isPopular":1},
-        {"id":4,"title":"Mission Impossible","description":"Description of movie Mission Impossible", "imageUrl":"MissionImpossible.jpg","isPopular":0}
+        {"id":1,"title":"Captain America","description":"Description of movie Captain America", "imageUrl":"CaptainAmerica.jpg","isPopular":1, "categoryId":1},
+        {"id":2,"title":"Fast And Furious","description":"Description of movie Fast And Furious", "imageUrl":"FastAndFurious.jpg","isPopular":0,"categoryId":2},
+        {"id":3,"title":"Lord Of The Rings","description":"Description of movie Lord Of The Rings", "imageUrl":"Lotr.jpg","isPopular":1,"categoryId":3},
+        {"id":4,"title":"Mission Impossible","description":"Description of movie Mission Impossible", "imageUrl":"MissionImpossible.jpg","isPopular":0,"categoryId":4}
     ],
     "categories":[
         {"id":1, "name":"Adventure" },

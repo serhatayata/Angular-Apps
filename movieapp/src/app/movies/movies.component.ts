@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Movie } from '../models/movie';
 import { MovieRepository } from '../models/movie.repository';
 import { AlertifyService } from '../services/alertify.service';
@@ -15,7 +16,10 @@ import { MovieComponent } from './movie/movie.component';
 })
 export class MoviesComponent implements OnInit {
 
-  constructor(private alertify:AlertifyService, private movieService:MovieService) { 
+  constructor(private alertify:AlertifyService, 
+              private movieService:MovieService,
+              private activatedRoute:ActivatedRoute) 
+  { 
     // this.movieRepository=new MovieRepository();
     // this.movies=this.movieRepository.getMovies();
     // this.popularMovies=this.movieRepository.getPopularMovies();
@@ -28,20 +32,26 @@ export class MoviesComponent implements OnInit {
   movies:Movie[]=[];
   filteredMovies:Movie[]=[];
   popularMovies:Movie[]=[];
-  
+  allMovies:Movie[]=[];
+
   filterText:string="";
   error:any="";
 
   ngOnInit(): void {
-    this.movieService.getMovies().subscribe(data => {
-      this.movies = data;
-      this.filteredMovies = this.movies;
-      this.popularMovies = this.movies.filter(x=>x.isPopular);
-    }, error => {
-      this.error = error;
-      console.log(this.error);
+    this.movieService.getAllMovies().subscribe(
+      data => {
+        this.allMovies=data;
+        this.popularMovies=this.allMovies.filter(x=>x.isPopular);
+      }
+    );
+    this.activatedRoute.params.subscribe(params => {
+      this.movieService.getMovies(params["categoryId"]).subscribe(data => {
+        this.movies = data;
+        this.filteredMovies = this.movies;
+      }, error => {
+        this.error = error;
+      });
     });
-
   }
 
   onInputChange(){

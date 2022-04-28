@@ -20,7 +20,7 @@
     <br>
 
     <ng-template [ngTemplateOutlet]="movieList2" [ngTemplateOutletContext]="{movies:popularMovies}" ></ng-template>
-
+ 
     <br><hr><br>
     <ng-template [ngTemplateOutlet]="movieList1"></ng-template>
     
@@ -46,10 +46,10 @@
     </div>
 </ng-template>
 
-<ng-template #movieList2 let-filmler="movies">
+<ng-template #movieList2>
     <h3 class="mb-2 mt-2">Popular Movies</h3>
     <div class="row row-cols-1 row-cols-md-3 g-4 mb-3">
-        <div class="col" *ngFor="let item of filmler">
+        <div class="col" *ngFor="let item of popularMovies">
             <div class="card h-100">
                 <img src="/assets/img/{{item.imageUrl}}"  class="card-img-top">
                 <div class="card-body">
