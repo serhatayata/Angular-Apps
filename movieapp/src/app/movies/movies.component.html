@@ -37,8 +37,8 @@
                     <h3 class="card-title">{{item.title}}</h3>
                     <p class="card-text">{{item.description}}</p>
                     <div>
-                        <button class="btn btn-sm btn-outline-primary">Details</button>
-                        <button (click)="addToList($event,item)" class="btn btn-sm btn-primary ms-1">Add to list</button>
+                        <a routerLink="/movies/{{item.id}}" class="btn btn-sm btn-outline-primary">Details</a>
+                        <a (click)="addToList($event,item)" class="btn btn-sm btn-primary ms-1">Add to list</a>
                     </div>
                 </div>
             </div>
