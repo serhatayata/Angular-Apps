@@ -14,6 +14,7 @@ import { AlertifyService } from './services/alertify.service';
 import { HttpClientModule } from '@angular/common/http';
 import { MovieService } from './services/movie.service';
 import { AppRoutingModule } from './app-routing.module';
+import { MovieCreateComponent } from './movie-create/movie-create.component';
 
 @NgModule({
   declarations: [ //component
@@ -24,7 +25,8 @@ import { AppRoutingModule } from './app-routing.module';
     MovieComponent,
     MovieDetailsComponent,
     FooterComponent,
-    MovieFilterPipe
+    MovieFilterPipe,
+    MovieCreateComponent
   ],
   imports: [ //module
     BrowserModule,
