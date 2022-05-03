@@ -1,14 +1,81 @@
 {
-    "movies":[
-        {"id":1,"title":"Captain America","description":"Description of movie Captain America", "imageUrl":"CaptainAmerica.jpg","isPopular":1, "categoryId":1},
-        {"id":2,"title":"Fast And Furious","description":"Description of movie Fast And Furious", "imageUrl":"FastAndFurious.jpg","isPopular":0,"categoryId":2},
-        {"id":3,"title":"Lord Of The Rings","description":"Description of movie Lord Of The Rings", "imageUrl":"Lotr.jpg","isPopular":1,"categoryId":3},
-        {"id":4,"title":"Mission Impossible","description":"Description of movie Mission Impossible", "imageUrl":"MissionImpossible.jpg","isPopular":0,"categoryId":4}
-    ],
-    "categories":[
-        {"id":1, "name":"Adventure" },
-        {"id":2, "name":"Romance" },
-        {"id":3, "name":"Science Fiction" },
-        {"id":4, "name":"Comedy" }
-       ]
+  "movies": [
+    {
+      "id": 1,
+      "title": "Captain America",
+      "description": "Description of movie Captain America",
+      "imageUrl": "CaptainAmerica.jpg",
+      "isPopular": 1,
+      "categoryId": 1
+    },
+    {
+      "id": 2,
+      "title": "Fast And Furious",
+      "description": "Description of movie Fast And Furious",
+      "imageUrl": "FastAndFurious.jpg",
+      "isPopular": 0,
+      "categoryId": 2
+    },
+    {
+      "id": 3,
+      "title": "Lord Of The Rings",
+      "description": "Description of movie Lord Of The Rings",
+      "imageUrl": "Lotr.jpg",
+      "isPopular": 1,
+      "categoryId": 3
+    },
+    {
+      "id": 4,
+      "title": "Mission Impossible",
+      "description": "Description of movie Mission Impossible",
+      "imageUrl": "MissionImpossible.jpg",
+      "isPopular": 0,
+      "categoryId": 4
+    },
+    {
+      "id": 5,
+      "title": "Deneme Title",
+      "description": "Deneme Description",
+      "imageUrl": "denmeurl.jpg",
+      "datePublished": 1651603386005,
+      "categoryId": "2",
+      "isPopular": false
+    },
+    {
+      "id": 6,
+      "title": "Deneme2",
+      "description": "Deneme2 Desc",
+      "imageUrl": "denemeurl2.jpeg",
+      "datePublished": 1651603887674,
+      "categoryId": "3",
+      "isPopular": false
+    },
+    {
+      "id": 7,
+      "title": "denem3",
+      "description": "deneme3",
+      "imageUrl": "deneme3.jpg",
+      "datePublished": 1651604079345,
+      "categoryId": "2",
+      "isPopular": false
+    }
+  ],
+  "categories": [
+    {
+      "id": 1,
+      "name": "Adventure"
+    },
+    {
+      "id": 2,
+      "name": "Romance"
+    },
+    {
+      "id": 3,
+      "name": "Science Fiction"
+    },
+    {
+      "id": 4,
+      "name": "Comedy"
+    }
+  ]
 }
