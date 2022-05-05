@@ -31,33 +31,6 @@
       "imageUrl": "MissionImpossible.jpg",
       "isPopular": 0,
       "categoryId": 4
-    },
-    {
-      "id": 5,
-      "title": "Deneme Title",
-      "description": "Deneme Description",
-      "imageUrl": "denmeurl.jpg",
-      "datePublished": 1651603386005,
-      "categoryId": "2",
-      "isPopular": false
-    },
-    {
-      "id": 6,
-      "title": "Deneme2",
-      "description": "Deneme2 Desc",
-      "imageUrl": "denemeurl2.jpeg",
-      "datePublished": 1651603887674,
-      "categoryId": "3",
-      "isPopular": false
-    },
-    {
-      "id": 7,
-      "title": "denem3",
-      "description": "deneme3",
-      "imageUrl": "deneme3.jpg",
-      "datePublished": 1651604079345,
-      "categoryId": "2",
-      "isPopular": false
     }
   ],
   "categories": [
