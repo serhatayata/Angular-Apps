@@ -22,12 +22,14 @@ export class MovieCreateComponent implements OnInit {
 
   categories:Category[];
   error:string;
-  model:any = {};
+  model:any = {
+    categoryId:''
+  };
 
-  createMovie(form:NgForm){
+  createMovie(){
 
-    console.log(this.model)
-    console.log(form)
+    // console.log(this.model)
+    // console.log(form)
 
 
     // if(title.value === "" || description.value ==="" || imageUrl.value ==="" || categoryId.value==="-1")
@@ -57,19 +59,20 @@ export class MovieCreateComponent implements OnInit {
     //   return;
     // }
 
-    // const movie = { id:0,
-    //   title:title.value, 
-    //   description:description.value, 
-    //   imageUrl:imageUrl.value, 
-    //   datePublished: new Date().getTime(),
-    //   categoryId:categoryId.value,
-    //   isPopular:false
-    // };
+    const movie = { 
+      id:0,
+      title:this.model.title, 
+      description:this.model.description, 
+      imageUrl:this.model.imageUrl, 
+      datePublished: new Date().getTime(),
+      categoryId:this.model.categoryId,
+      isPopular:false
+    };
 
-    // this.movieService.createMovie(movie).subscribe(data => {
-    //   console.log(data);
-    //   this.router.navigate(['/movies', data.id]);
-    // });
+    this.movieService.createMovie(movie).subscribe(data => {
+      console.log(data);
+      this.router.navigate(['/movies', data.id]);
+    });
 
     
 
