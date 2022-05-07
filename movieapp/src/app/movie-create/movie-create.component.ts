@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { FormControl, FormGroup, NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Category } from '../models/category';
 import { AlertifyService } from '../services/alertify.service';
@@ -25,6 +25,22 @@ export class MovieCreateComponent implements OnInit {
   model:any = {
     categoryId:''
   };
+
+  movieForm = new FormGroup({
+    title: new FormControl("Movie name" ),
+    description: new FormControl("Description"),
+    imageUrl: new FormControl("1.jpeg"),
+    categoryId: new FormControl("2")
+  })
+
+  clearForm(){
+    this.movieForm.patchValue({
+      title:'',
+      description:'',
+      imageUrl:'',
+      categoryId:''
+    });
+  }
 
   createMovie(){
 
@@ -72,9 +88,7 @@ export class MovieCreateComponent implements OnInit {
     this.movieService.createMovie(movie).subscribe(data => {
       console.log(data);
       this.router.navigate(['/movies', data.id]);
-    });
-
-    
+    });    
 
   }
 

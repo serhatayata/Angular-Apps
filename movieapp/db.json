@@ -34,38 +34,8 @@
     },
     {
       "id": 5,
-      "title": "dddddd",
-      "description": "asdasdas",
-      "imageUrl": "aaaaaaaa.jpg",
-      "datePublished": 1651864613408,
-      "categoryId": "4",
-      "isPopular": false
-    },
-    {
-      "id": 6,
-      "title": "s",
-      "description": "s",
-      "imageUrl": "s",
-      "datePublished": 1651864893374,
+      "datePublished": 1651945870279,
       "categoryId": "",
-      "isPopular": false
-    },
-    {
-      "id": 7,
-      "title": "dddddd",
-      "description": "asdasdasd",
-      "imageUrl": "asdasd.jpg",
-      "datePublished": 1651865271077,
-      "categoryId": "3",
-      "isPopular": false
-    },
-    {
-      "id": 8,
-      "title": "asdasd",
-      "description": "asdasdas",
-      "imageUrl": "asdasd.jpg",
-      "datePublished": 1651865316494,
-      "categoryId": "3",
       "isPopular": false
     }
   ],
