@@ -37,6 +37,15 @@
       "datePublished": 1651945870279,
       "categoryId": "",
       "isPopular": false
+    },
+    {
+      "id": 6,
+      "title": "film adi 1",
+      "description": "film aciklama",
+      "imageUrl": "deneme.jpeg",
+      "datePublished": 1652031602587,
+      "categoryId": "2",
+      "isPopular": false
     }
   ],
   "categories": [

@@ -6,18 +6,25 @@
         <div class="mb-3">
             <label for="title" class="form-label">Title</label>
             <input name="title" type="text" class="form-control"  formControlName="title">
-            <!-- <div class="mt-1 alert alert-danger" *ngIf="title.invalid && title.touched">
+            <div class="mt-1 alert alert-danger" *ngIf="title.invalid && title.touched">
                 <p *ngIf="title.errors?.['required']">Required</p>
                 <p *ngIf="title.errors?.['minlength']">Has to have more than 5 characters...</p>
-            </div> -->
+            </div>
         </div>
         <div class="mb-3">
             <label for="description" class="form-label">Description</label>
             <textarea name="description"  class="form-control" id="" cols="30" rows="10" formControlName="description"></textarea>
+            <div class="mt-1 alert alert-danger" *ngIf="description.invalid && description.touched">
+                <p *ngIf="description.errors?.['required']">Required</p>
+            </div>
         </div>
         <div class="mb-3">
             <label for="imageUrl" class="form-label">Image URL</label>
             <input name="imageUrl"  type="text" class="form-control"  formControlName="imageUrl">
+            <div class="mt-1 alert alert-danger" *ngIf="imageUrl.invalid && imageUrl.touched">
+                <p *ngIf="imageUrl.errors?.['required']">Required</p>
+                <p *ngIf="imageUrl.errors?.['wrongExtension']">Extension error (Only  .jpg - .jpeg - .png)</p>
+            </div>
         </div>
         <div class="mb-3">
             <label for="categoryId" class="form-label">Category</label>
@@ -25,9 +32,12 @@
                 <option value="" selected>Choose...</option>
                 <option *ngFor="let item of categories" [value]="item.id">{{item.name}}</option>
             </select>
+            <div class="mt-1 alert alert-danger" *ngIf="categoryId.invalid && categoryId.touched">
+                <p *ngIf="categoryId.errors?.['required']">Required</p>
+            </div>
         </div>
 
-        <button type="submit" class="btn-primary btn m-1" >Create</button>
+        <button [disabled]="movieForm.invalid" type="submit" class="btn-primary btn m-1" >Create</button>
         <button type="button" class="btn-warning btn" (click)="clearForm()">Clear</button>
     </form>
 
