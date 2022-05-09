@@ -1,8 +1,7 @@
 import { HttpClient, HttpErrorResponse, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable, throwError } from "rxjs";
-import { map } from "rxjs-compat/operator/map";
-import { catchError,tap } from "rxjs/operators";
+import { catchError,map,tap } from "rxjs/operators";
 import { Movie } from "../models/movie";
 
 
@@ -13,10 +12,11 @@ constructor(private http:HttpClient){
 }
 
 url = "http://localhost:3010/movies";
+url_firebase = "https://angular-movie-app-fa239-default-rtdb.firebaseio.com/";
 
 getMovies(categoryId:number):Observable<Movie[]> {
 
-    let newUrl = this.url;
+    let newUrl = this.url_firebase+"movies.json";
 
     if(categoryId)
     {
@@ -25,15 +25,31 @@ getMovies(categoryId:number):Observable<Movie[]> {
 
     return this.http.get<Movie[]>(newUrl)
     .pipe(
+        map(response => {
+            const movies:Movie[] = [];
+            for(const key in response){
+            //   console.log({...response[key],id:key});
+            movies.push({...response[key],id:key})
+            }
+            return movies;
+         }),
         tap(data => console.log(data)),
         catchError(this.handleError)
     );
 }
 
 getAllMovies():Observable<Movie[]> {
-
-    return this.http.get<Movie[]>(this.url)
+    let newUrl = this.url_firebase+"movies.json";
+    return this.http.get<Movie[]>(newUrl)
     .pipe(
+        map(response => {
+            const movies:Movie[] = [];
+            for(const key in response){
+            //   console.log({...response[key],id:key});
+            movies.push({...response[key],id:key})
+            }
+            return movies;
+         }),
         tap(data => console.log(data)),
         catchError(this.handleError)
     );
@@ -54,7 +70,7 @@ createMovie(movie:Movie):Observable<Movie>{
             'Authorization':'Token'
         })
     }
-    return this.http.post<Movie>(this.url,movie,httpOptions).pipe(
+    return this.http.post<Movie>(this.url_firebase + "/movies.json",movie,httpOptions).pipe(
         tap(data => console.log(data)),
         catchError(this.handleError)
     );
