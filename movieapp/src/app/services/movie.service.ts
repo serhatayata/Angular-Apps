@@ -1,7 +1,7 @@
 import { HttpClient, HttpErrorResponse, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable, throwError } from "rxjs";
-import { catchError,map,tap } from "rxjs/operators";
+import { catchError,delay,map,tap } from "rxjs/operators";
 import { Movie } from "../models/movie";
 
 
@@ -41,7 +41,8 @@ getMovies(categoryId:number):Observable<Movie[]> {
             return movies;
          }),
         tap(data => console.log(data)),
-        catchError(this.handleError)
+        catchError(this.handleError),
+        // delay(500)
     );
 }
 
@@ -66,7 +67,7 @@ getById(movieId:string):Observable<Movie>{
     return this.http.get<Movie>(this.url_firebase+ "movies/"+movieId+'.json')
     .pipe(
         tap(data => console.log(data)),
-        catchError(this.handleError)
+        catchError(this.handleError),
     );
 }
 
