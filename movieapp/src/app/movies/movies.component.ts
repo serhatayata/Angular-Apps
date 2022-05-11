@@ -28,6 +28,8 @@ export class MoviesComponent implements OnInit {
     this.filteredMovies=this.movies;
   }
 
+  loading:boolean = false; 
+
   title:string;
   movies:Movie[]=[];
   filteredMovies:Movie[]=[];
@@ -37,7 +39,10 @@ export class MoviesComponent implements OnInit {
   filterText:string="";
   error:any="";
 
-  ngOnInit(): void {
+  ngOnInit(): void { 
+
+    this.loading=true;
+
     this.movieService.getAllMovies().subscribe(
       data => {
         this.allMovies=data;
@@ -48,8 +53,10 @@ export class MoviesComponent implements OnInit {
       this.movieService.getMovies(params["categoryId"]).subscribe(data => {
         this.movies = data;
         this.filteredMovies = this.movies;
+        this.loading=false;
       }, error => {
         this.error = error;
+        this.loading=false;
       });
     });
   }
