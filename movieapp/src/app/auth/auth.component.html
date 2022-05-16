@@ -13,5 +13,5 @@
         <input type="password" required minlength="6" maxlength="24" ngModel name="password" id="password" class="form-control">
     </div>
     <button type="submit" class="btn btn-primary" [disabled]="authForm.invalid">{{isLoginMode ? 'Login' : 'Register'}}</button>
-    <button class="btn btn-danger ms-2" (click)="onToggleMode()">Toggle to {{isLoginMode ? 'Register' : 'Login'}}</button>
+    <button type="button" class="btn btn-danger ms-2" (click)="onToggleMode()">Toggle to {{isLoginMode ? 'Register' : 'Login'}}</button>
 </form>
