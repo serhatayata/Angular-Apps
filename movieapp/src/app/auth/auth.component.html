@@ -3,6 +3,11 @@
 </div>
 <hr>
 <br>
+
+<div *ngIf="error" class="alert alert-danger">
+    {{ error }}
+</div>
+
 <form #authForm="ngForm" (ngSubmit)="onSubmit(authForm)" *ngIf="!loading">
     <div class="mb-3">
         <label for="email" class="form-label">E-mail</label>
