@@ -18,9 +18,10 @@ export class AuthService {
       email:email,
       password:password,
       returnSecureToken:true
-    }).pipe(
-      catchError(this.handleError)
-    );
+    });
+    // .pipe(
+    //   catchError(this.handleError)
+    // );
   }
 
   login(email:string,password:string){
@@ -28,30 +29,31 @@ export class AuthService {
       email:email,
       password:password,
       returnSecureToken:true
-    }).pipe(
-      catchError(this.handleError)
-    );
+    });
+    // .pipe(
+    //   catchError(this.handleError)
+    // );
   }
   
-  private handleError(response:HttpErrorResponse){
-    let message = "Error occured";
+  // private handleError(response:HttpErrorResponse){
+  //   let message = "Error occured";
 
-    if (!navigator.onLine) {
-      message="No connection found";
-      return throwError(message);
-    }
+  //   if (!navigator.onLine) {
+  //     message="No connection found";
+  //     return throwError(message);
+  //   }
 
-    if (response.error.error) {
-      switch (response.error.error.message) {
-        case "EMAIL_EXISTS": message="E-mail adress is already being used"; break;
-        case "EMAIL_NOT_FOUND": message="E-mail not found"; break;
-        case "INVALID_PASSWORD": message="Invalid password"; break;
-        default: message="Error occured !"
-          break;
-      }
-    }
+  //   if (response.error.error) {
+  //     switch (response.error.error.message) {
+  //       case "EMAIL_EXISTS": message="E-mail adress is already being used"; break;
+  //       case "EMAIL_NOT_FOUND": message="E-mail not found"; break;
+  //       case "INVALID_PASSWORD": message="Invalid password"; break;
+  //       default: message="Error occured !"
+  //         break;
+  //     }
+  //   }
 
-    return throwError(message);
-  }
+  //   return throwError(message);
+  // }
 
 }
