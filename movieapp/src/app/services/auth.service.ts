@@ -1,7 +1,8 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { catchError, throwError } from 'rxjs';
+import { catchError, Observable, Subject, tap, throwError } from 'rxjs';
 import { AuthResponse } from '../models/AuthResponse';
+import { User } from '../models/user';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +10,7 @@ import { AuthResponse } from '../models/AuthResponse';
 export class AuthService {
 
   api_key = "AIzaSyBwDKZxWnIxIf5NfmXkjWUM6vXauHqO02k";
-
+  user = new Subject<User>(); //Observable türünde...
   
   constructor(private http:HttpClient) { }
 
@@ -18,7 +19,19 @@ export class AuthService {
       email:email,
       password:password,
       returnSecureToken:true
-    });
+    }).pipe(
+      tap(response => {
+        const expirationDate = new Date(new Date().getTime()+(+response.expiresIn * 1000))
+        const user = new User(
+                              response.email,
+                              response.localId,
+                              response.idToken,
+                              expirationDate
+                             );
+         //User süreç içine dahil ediliyor. Subscribe edilir.
+         this.user.next(user);
+      })
+    );
     // .pipe(
     //   catchError(this.handleError)
     // );
