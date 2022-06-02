@@ -1,5 +1,6 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { BehaviorSubject, catchError, Observable, Subject, tap, throwError } from 'rxjs';
 import { AuthResponse } from '../models/AuthResponse';
 import { User } from '../models/user';
@@ -12,7 +13,7 @@ export class AuthService {
   api_key = "AIzaSyBwDKZxWnIxIf5NfmXkjWUM6vXauHqO02k";
   user = new BehaviorSubject<User>(null); //Observable türünde...
   
-  constructor(private http:HttpClient) { }
+  constructor(private http:HttpClient, private router:Router) { }
 
   singUp(email:string, password:string){
     return this.http.post<AuthResponse>("https://identitytoolkit.googleapis.com/v1/accounts:signUp?key="+this.api_key,{
@@ -58,6 +59,11 @@ export class AuthService {
     // .pipe(
     //   catchError(this.handleError)
     // );
+  }
+
+  logout(){
+    this.user.next(null);
+    this.router.navigate(['/auth']);
   }
   
   // private handleError(response:HttpErrorResponse){
