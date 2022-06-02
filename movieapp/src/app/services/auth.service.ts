@@ -22,15 +22,7 @@ export class AuthService {
       returnSecureToken:true
     }).pipe(
       tap(response => {
-        const expirationDate = new Date(new Date().getTime()+(+response.expiresIn * 1000))
-        const user = new User(
-                              response.email,
-                              response.localId,
-                              response.idToken,
-                              expirationDate
-                             );
-         //User süreç içine dahil ediliyor. Subscribe edilir.
-         this.user.next(user);
+        this.handleAuthentication(response.email, response.localId, response.idToken, +response.expiresIn)
       })
     );
     // .pipe(
@@ -45,15 +37,7 @@ export class AuthService {
       returnSecureToken:true
     }).pipe(
       tap(response => {
-        const expirationDate = new Date(new Date().getTime()+(+response.expiresIn * 1000))
-        const user = new User(
-                              response.email,
-                              response.localId,
-                              response.idToken,
-                              expirationDate
-                             );
-         //User süreç içine dahil ediliyor. Subscribe edilir.
-         this.user.next(user);
+        this.handleAuthentication(response.email, response.localId, response.idToken, +response.expiresIn)
       })
     );
     // .pipe(
@@ -64,7 +48,42 @@ export class AuthService {
   logout(){
     this.user.next(null);
     this.router.navigate(['/auth']);
+
+    localStorage.removeItem("user");
   }
+
+  autoLogin(){
+    const user = JSON.parse(localStorage.getItem("user"));
+    if(!user){
+      return;
+    }
+    const loadedUser = new User(
+      user.email,
+      user.id,
+      user._token,
+      new Date(user._tokenExpirationDate)
+    )
+
+    if (loadedUser.token) {
+      this.user.next(loadedUser);
+    }
+  }
+
+  handleAuthentication(email:string, userId:string, token:string, expiresIn:number){
+    const expirationDate = new Date(new Date().getTime()+(expiresIn * 1000))
+    const user = new User(
+                          email,
+                          userId,
+                          token,
+                          expirationDate
+                         );
+     //User süreç içine dahil ediliyor. Subscribe edilir.
+     this.user.next(user);
+
+     //KEEPING AT LOCAL STORAGE
+      localStorage.setItem("user",JSON.stringify(user));
+  }
+
   
   // private handleError(response:HttpErrorResponse){
   //   let message = "Error occured";
