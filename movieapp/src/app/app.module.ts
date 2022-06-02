@@ -19,6 +19,7 @@ import { AuthComponent } from './auth/auth.component';
 import { CategoryCreateComponent } from './category-create/category-create.component';
 import { ErrorInterceptor } from './services/error.interceptor';
 import { AuthInterceptor } from './services/auth.interceptor';
+import { MoviesHomeComponent } from './movies/movies-home/movies-home.component';
 
 @NgModule({
   declarations: [ //component
@@ -32,7 +33,8 @@ import { AuthInterceptor } from './services/auth.interceptor';
     MovieFilterPipe,
     MovieCreateComponent,
     AuthComponent,
-    CategoryCreateComponent
+    CategoryCreateComponent,
+    MoviesHomeComponent
   ],
   imports: [ //module
     BrowserModule,
