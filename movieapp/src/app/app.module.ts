@@ -20,6 +20,8 @@ import { CategoryCreateComponent } from './category-create/category-create.compo
 import { ErrorInterceptor } from './services/error.interceptor';
 import { AuthInterceptor } from './services/auth.interceptor';
 import { MoviesHomeComponent } from './movies/movies-home/movies-home.component';
+import { AlertComponent } from './shared/alert/alert.component';
+import { LoadingComponent } from './shared/loading/loading.component';
 
 @NgModule({
   declarations: [ //component
@@ -34,7 +36,9 @@ import { MoviesHomeComponent } from './movies/movies-home/movies-home.component'
     MovieCreateComponent,
     AuthComponent,
     CategoryCreateComponent,
-    MoviesHomeComponent
+    MoviesHomeComponent,
+    AlertComponent,
+    LoadingComponent
   ],
   imports: [ //module
     BrowserModule,
