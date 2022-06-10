@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Movie } from '../models/movie';
 import { MovieRepository } from '../models/movie.repository';
 import { AlertifyService } from '../services/alertify.service';
+import { AuthService } from '../services/auth.service';
 import { MovieService } from '../services/movie.service';
 import { MovieComponent } from './movie/movie.component';
 
@@ -18,7 +19,8 @@ export class MoviesComponent implements OnInit {
 
   constructor(private alertify:AlertifyService, 
               private movieService:MovieService,
-              private activatedRoute:ActivatedRoute) 
+              private activatedRoute:ActivatedRoute,
+              private authService:AuthService) 
   { 
     // this.movieRepository=new MovieRepository();
     // this.movies=this.movieRepository.getMovies();
@@ -35,12 +37,15 @@ export class MoviesComponent implements OnInit {
   filteredMovies:Movie[]=[];
   popularMovies:Movie[]=[];
   allMovies:Movie[]=[];
+  userId:string;
 
   filterText:string="";
   error:any="";
 
   ngOnInit(): void { 
-
+    this.authService.user.subscribe(user => {
+      this.userId=user.id;
+    })
     this.loading=true;
 
     this.movieService.getAllMovies().subscribe(
@@ -73,7 +78,10 @@ export class MoviesComponent implements OnInit {
       $event.target.classList.remove('btn-primary')
       $event.target.classList.add('btn-danger')
 
-     this.alertify.success(movie.title+' added to list');
+      this.movieService.addToMyList({
+        userId:this.userId,
+        movieId:movie.id
+      }).subscribe(() => this.alertify.success(movie.title+' added to list'))
     }
     else {
       $event.target.innerText = "Add to list"

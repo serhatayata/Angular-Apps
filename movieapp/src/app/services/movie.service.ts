@@ -3,6 +3,7 @@ import { Injectable } from "@angular/core";
 import { Observable, throwError } from "rxjs";
 import { catchError,delay,map,tap } from "rxjs/operators";
 import { Movie } from "../models/movie";
+import { MyList } from "../models/mylist";
 
 
 @Injectable()
@@ -82,6 +83,16 @@ createMovie(movie:Movie):Observable<Movie>{
         tap(data => console.log(data)),
         catchError(this.handleError)
     );
+}
+
+addToMyList(item:MyList):Observable<MyList>{
+
+    return this.http.post<MyList>(this.url_firebase+"/users/"+item.userId+"/list/"+item.movieId+".json",{
+        dateAdded:new Date().getTime()
+    }).pipe(
+        tap(data => console.log(data)),
+        catchError(this.handleError)
+    )
 }
 
 
