@@ -85,16 +85,23 @@ createMovie(movie:Movie):Observable<Movie>{
     );
 }
 
-addToMyList(item:MyList):Observable<MyList>{
-
-    return this.http.post<MyList>(this.url_firebase+"/users/"+item.userId+"/list/"+item.movieId+".json",{
-        dateAdded:new Date().getTime()
+addToMyList(item: MyList): Observable<MyList> {
+    return this.http.post<MyList>(this.url_firebase + "/users/" + item.userId + "/list/" + item.movieId + ".json",
+    {
+      dateAdded: new Date().getTime()
     }).pipe(
+      tap(data => console.log(data)),
+      catchError(this.handleError)
+    )
+  }
+
+  removeFromList(item: MyList): Observable<MyList> {
+    return this.http.delete<MyList>(this.url_firebase + "/users/" + item.userId + "/list/" + item.movieId + ".json")
+      .pipe(
         tap(data => console.log(data)),
         catchError(this.handleError)
-    )
-}
-
+      )
+  }
 
 private handleError(error:HttpErrorResponse){
     if(error.error instanceof ErrorEvent){
