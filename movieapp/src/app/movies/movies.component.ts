@@ -38,6 +38,7 @@ export class MoviesComponent implements OnInit {
   popularMovies:Movie[]=[];
   allMovies:Movie[]=[];
   userId:string;
+  movieList:string[] = [];
 
   filterText:string="";
   error:any="";
@@ -45,31 +46,40 @@ export class MoviesComponent implements OnInit {
   ngOnInit(): void { 
     this.authService.user.subscribe(user => {
       this.userId=user.id;
-    })
-    this.loading=true;
 
-    this.movieService.getAllMovies().subscribe(
-      data => {
-        this.allMovies=data;
-        this.popularMovies=this.allMovies.filter(x=>x.isPopular);
-      }
-    );
-    this.activatedRoute.params.subscribe(params => {
-      this.movieService.getMovies(params["categoryId"]).subscribe(data => {
-        this.movies = data;
-        this.filteredMovies = this.movies;
-        this.loading=false;
-      }, error => {
-        this.error = error;
-        this.loading=false;
+      this.loading=true;
+
+      this.movieService.getAllMovies().subscribe(
+        data => {
+          this.allMovies=data;
+          this.popularMovies=this.allMovies.filter(x=>x.isPopular);
+        }
+      );
+      this.activatedRoute.params.subscribe(params => {
+        this.movieService.getMovies(params["categoryId"]).subscribe(data => {
+          this.movies = data;
+          this.filteredMovies = this.movies;
+          this.movieService.getList(this.userId).subscribe(data => {
+            this.movieList = data;
+            console.log(this.movieList);
+          });
+          this.loading=false;
+        }, error => {
+          this.error = error;
+          this.loading=false;
+        });
       });
-    });
+    })
   }
 
   onInputChange(){
     this.filteredMovies = this.filterText? 
                           this.movies.filter(x=>x.title.indexOf(this.filterText) !== -1 || 
                           x.description.indexOf(this.filterText) !== -1) : this.movies;
+  }
+
+  getButtonState(movie:Movie){
+    return this.movieList.findIndex(m => m === movie.id) > -1
   }
 
   addToList($event:any,movie:Movie){

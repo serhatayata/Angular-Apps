@@ -103,6 +103,21 @@ addToMyList(item: MyList): Observable<MyList> {
       )
   }
 
+  getList(userId:string):Observable<string[]> {
+    return this.http.get<string[]>(this.url_firebase+"/users/"+userId+"/list.json")
+    .pipe(
+        map(response => {
+            const movies:string[]=[];
+            for(const key in response){
+                movies.push(key);
+            }
+            return movies;
+        }),
+        tap(data => console.log(data)),
+        catchError(this.handleError)
+    )
+  }
+
 private handleError(error:HttpErrorResponse){
     if(error.error instanceof ErrorEvent){
         //client or network errors

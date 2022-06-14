@@ -25,8 +25,8 @@
         </div>
         <br>
 
-        <ng-template [ngTemplateOutlet]="movieList2" [ngTemplateOutletContext]="{movies:popularMovies}">
-        </ng-template>
+        <!-- <ng-template [ngTemplateOutlet]="movieList2" [ngTemplateOutletContext]="{movies:popularMovies}">
+        </ng-template> -->
 
         <br>
         <hr><br>
@@ -47,7 +47,16 @@
                     <p class="card-text">{{item.description}}</p>
                     <div>
                         <a routerLink="/movies/{{item.id}}" class="btn btn-sm btn-outline-primary">Details</a>
-                        <a (click)="addToList($event,item)" class="btn btn-sm btn-primary ms-1">Add to list</a>
+
+                        <button *ngIf="!getButtonState(item)"
+                        (click)="addToList($event,item)" 
+                        class="btn btn-sm btn-primary ms-1">Add to list
+                        </button>
+
+                        <button *ngIf="getButtonState(item)"
+                        (click)="addToList($event,item)" 
+                        class="btn btn-sm btn-danger ms-1">Remove from list
+                        </button>
                     </div>
                 </div>
             </div>
