@@ -1,11 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Movie } from '../models/movie';
-import { MovieRepository } from '../models/movie.repository';
+import { Movie } from './movie';
 import { AlertifyService } from '../services/alertify.service';
 import { AuthService } from '../services/auth.service';
-import { MovieService } from '../services/movie.service';
+import { MovieService } from './movie.service';
 import { MovieComponent } from './movie/movie.component';
 
 

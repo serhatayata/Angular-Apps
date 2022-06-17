@@ -2,8 +2,8 @@ import { HttpClient, HttpErrorResponse, HttpHeaders } from "@angular/common/http
 import { Injectable } from "@angular/core";
 import { Observable, throwError } from "rxjs";
 import { catchError,delay,map,tap } from "rxjs/operators";
-import { Movie } from "../models/movie";
-import { MyList } from "../models/mylist";
+import { Movie } from "./movie";
+import { MyList } from "./mylist";
 
 
 @Injectable()
