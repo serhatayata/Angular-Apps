@@ -2,14 +2,12 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
-import { CategoryComponent } from './category/category.component';
 import { FooterComponent } from './footer/footer.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AlertifyService } from './services/alertify.service';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AuthComponent } from './auth/auth.component';
-import { CategoryCreateComponent } from './category-create/category-create.component';
 import { ErrorInterceptor } from './services/error.interceptor';
 import { AuthInterceptor } from './services/auth.interceptor';
 import { AlertComponent } from './shared/alert/alert.component';
@@ -20,10 +18,8 @@ import { MoviesModule } from './movies/movies.module';
   declarations: [ //component
     AppComponent,
     NavbarComponent,
-    CategoryComponent,
     FooterComponent,
     AuthComponent,
-    CategoryCreateComponent,
     AlertComponent,
     LoadingComponent
   ],
